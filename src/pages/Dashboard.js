@@ -78,7 +78,7 @@ export default function Dashboard() {
             <span className="info-value">HttpOnly Cookie · 1 day</span>
           </div>
           <div className="info-row">
-            <span className="info-label">Token Rotation</span>
+            <span className="info-label">Tokens Rotation</span>
             <span className="info-value" style={{ color: "var(--success)" }}>Enabled</span>
           </div>
           <div className="info-row">

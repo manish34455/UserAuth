@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://userauth-b7q2.onrender.com/api/",
+  baseURL: "https://userauth-backend-210t.onrender.com/api/",
   withCredentials: true, // Send HttpOnly cookies automatically
 });
 

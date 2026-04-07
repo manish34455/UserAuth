@@ -8,8 +8,11 @@ class Command(BaseCommand):
         password = 'Admin@1234'
 
         user, created = User.objects.get_or_create(email=email)
+
         user.is_staff = True
         user.is_superuser = True
+        user.is_active = True   # 🔥 THIS WAS MISSING
+
         user.set_password(password)
         user.save()
 

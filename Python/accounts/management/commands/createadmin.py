@@ -6,12 +6,14 @@ class Command(BaseCommand):
         User = get_user_model()
         email = 'admin@gmail.com'
         password = 'Admin@1234'
-        
-        if not User.objects.filter(email=email).exists():
-            User.objects.create_superuser(email=email, password=password)
+
+        user, created = User.objects.get_or_create(email=email)
+        user.is_staff = True
+        user.is_superuser = True
+        user.set_password(password)
+        user.save()
+
+        if created:
             self.stdout.write('Superuser created!')
         else:
-            user = User.objects.get(email=email)
-            user.set_password(password)
-            user.save()
-            self.stdout.write('Password reset done!')
+            self.stdout.write('Password reset!')

@@ -46,21 +46,35 @@ class RegisterSerializer(serializers.ModelSerializer):
             expiration_time=timezone.now() + timedelta(minutes=15)
         )
 
-        send_mail(
-            subject="Your OTP Verification Code",
-            message=f"""
-Hello,
-
-Your OTP is: {otp_code}
-
-It is valid for 15 minutes.
-""",
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[user.email],
-            fail_silently=False,
-        )
+        print("🔥 OTP:", otp_code)   # ✅ for testing
 
         return user
+#     def create(self, validated_data):
+#         user = User.objects.create_user(**validated_data)
+
+#         otp_code = str(random.randint(100000, 999999))
+
+#         OTP.objects.create(
+#             user=user,
+#             otp=otp_code,
+#             expiration_time=timezone.now() + timedelta(minutes=15)
+#         )
+
+#         send_mail(
+#             subject="Your OTP Verification Code",
+#             message=f"""
+# Hello,
+
+# Your OTP is: {otp_code}
+
+# It is valid for 15 minutes.
+# """,
+#             from_email=settings.EMAIL_HOST_USER,
+#             recipient_list=[user.email],
+#             fail_silently=False,
+#         )
+
+#         return user
 
 
 class VerifyOTPSerializer(serializers.Serializer):

@@ -3,7 +3,7 @@ from django.utils import timezone
 from datetime import timedelta
 import random
 from .models import User, OTP
-from django.core.mail import send_mail
+# from django.core.mail import send_mail
 from django.conf import settings
 
 def create(self, validated_data):
@@ -16,14 +16,15 @@ def create(self, validated_data):
         otp=otp_code,
         expiration_time=timezone.now() + timedelta(minutes=15)
     )
+    print("🔥 OTP:", otp_code)
 
-    send_mail(
-        subject="Your OTP Code",
-        message=f"Your OTP is {otp_code}. It is valid for 15 minutes.",
-        from_email=settings.EMAIL_HOST_USER,
-        recipient_list=[user.email],
-        fail_silently=False,
-    )
+    # send_mail(
+    #     subject="Your OTP Code",
+    #     message=f"Your OTP is {otp_code}. It is valid for 15 minutes.",
+    #     from_email=settings.EMAIL_HOST_USER,
+    #     recipient_list=[user.email],
+    #     fail_silently=False,
+    # )
 
     return user
 
